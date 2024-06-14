@@ -5,6 +5,7 @@ import Landingpage from './pages/Landingpage';
 import LoginPage from './pages/LoginPage';
 import NotfoundPage from './pages/NotfoundPage';
 import BlogDetailsPage from './pages/BlogDetailsPage';
+import AboutPage from './pages/AboutPage';
 
 /**
  * The main entry point is Homepage.jsx
@@ -28,6 +29,10 @@ export default function Route() {
 				{
 					path: '/blog/:blogId',
 					element: <BlogDetailsPage />,
+				},
+				{
+					path: '/about',
+					element: <AboutPage />,
 				},
 			],
 		},

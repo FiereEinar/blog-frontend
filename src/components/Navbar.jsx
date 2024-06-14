@@ -8,7 +8,7 @@ import NavigationWrapper from './NavigationWrapper';
 
 export default function Navbar() {
 	return (
-		<nav className='w-full border p-3 flex justify-center items-center gap-5'>
+		<nav className='w-full border-b p-3 flex justify-center items-center gap-5'>
 			{navlinks.map((link, i) => (
 				<NavLink to={link.path} key={i} className={navlinkClassCallback}>
 					<p>{link.name}</p>
@@ -19,7 +19,7 @@ export default function Navbar() {
 				{socialLinks.map((link, i) => (
 					<Link key={i} target='_blank' to={link.path}>
 						<NavigationMenuLink
-							className={`${navigationMenuTriggerStyle()} w-48 `}
+							className={`${navigationMenuTriggerStyle()} !w-64`}
 						>
 							{link.name}
 						</NavigationMenuLink>
