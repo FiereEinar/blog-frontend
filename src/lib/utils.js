@@ -14,3 +14,8 @@ export function determineReadtime(string) {
 
   return Math.floor(minutes);
 }
+
+export function capitalizeFirstLetter(word) {
+  if (!word) return ''; // Handle empty string or undefined input
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}

@@ -18,7 +18,7 @@ export default function Header() {
 				<div className='flex items-center justify-start gap-2'>
 					<img
 						className=' w-10 h-10 rounded-full'
-						src='src/assets/blog-logo.png'
+						src='/src/assets/blog-logo.png'
 						alt=''
 					/>
 					<h4 className='text-2xl'>
