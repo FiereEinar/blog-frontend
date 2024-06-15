@@ -20,8 +20,6 @@ export default function BlogDetailsPage() {
 		return <p>An error has occured.</p>;
 	}
 
-	console.log(data);
-
 	return (
 		<>
 			<main className='flex justify-center flex-wrap gap-10'>
