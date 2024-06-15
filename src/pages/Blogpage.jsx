@@ -1,12 +1,12 @@
 import LoadingScreen from '@/components/LoadingScreen';
-import useFetchBlogs from '@/hooks/useFetchData';
 import { useQuery } from '@tanstack/react-query';
 import BlogCard from '@/components/BlogCard';
+import { fetchBlogs } from '@/api/blog';
 
 export default function Blogpage() {
 	const { data, error, isLoading } = useQuery({
 		queryKey: ['blogs'],
-		queryFn: useFetchBlogs,
+		queryFn: fetchBlogs,
 	});
 
 	if (isLoading) {

@@ -1,7 +1,7 @@
+import { fetchBlogByTopicId } from '@/api/blog';
 import { fetchTopics } from '@/api/topic';
 import BlogCard from '@/components/BlogCard';
 import LoadingScreen from '@/components/LoadingScreen';
-import { fetchBlogByTopicId } from '@/hooks/useFetchBlogByTopicId';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 

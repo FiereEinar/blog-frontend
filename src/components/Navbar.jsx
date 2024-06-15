@@ -6,12 +6,12 @@ import {
 } from './ui/navigation-menu';
 import NavigationWrapper from './NavigationWrapper';
 import { useQuery } from '@tanstack/react-query';
-import useFetchTopics from '@/hooks/useFetchTopics';
+import { fetchTopics } from '@/api/topic';
 
 export default function Navbar() {
 	const { data, error, isLoading } = useQuery({
 		queryKey: ['topics'],
-		queryFn: useFetchTopics,
+		queryFn: fetchTopics,
 	});
 
 	return (

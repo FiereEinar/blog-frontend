@@ -1,6 +1,6 @@
+import { fetchBlogById } from '@/api/blog';
 import CommentSection from '@/components/CommentSection';
 import LoadingScreen from '@/components/LoadingScreen';
-import fetchBlogById from '@/hooks/fetchBlogById';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { useParams } from 'react-router-dom';

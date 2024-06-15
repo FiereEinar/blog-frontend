@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { userCommentSchema } from '@/utils/validations/userSchema';
 import { useParams } from 'react-router-dom';
+import { postComment } from '@/api/comment';
 
 export default function CommentSection({ comments }) {
 	const isLoggedIn = useContext(AuthContext);
@@ -23,21 +24,10 @@ export default function CommentSection({ comments }) {
 
 	const onCommentSubmit = async (data) => {
 		try {
-			const response = await fetch(
-				`https://heady-star-waste.glitch.me/blog/${blogId}/comments`,
-				{
-					mode: 'cors',
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: localStorage.getItem('Token'),
-					},
-					body: JSON.stringify(data),
-				}
-			);
+			const result = await postComment(data, blogId);
 
-			if (!response.ok) {
-				return setError('root', { message: response.message });
+			if (!result.success) {
+				return setError('root', { message: 'Comment not posted succesfully.' });
 			}
 
 			reset();

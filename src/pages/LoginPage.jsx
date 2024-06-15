@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { userLoginSchema } from '@/utils/validations/userSchema';
 import { useNavigate } from 'react-router-dom';
+import { postSignIn } from '@/api/user';
 
 export default function LoginPage() {
 	const navigate = useNavigate();
@@ -17,18 +18,7 @@ export default function LoginPage() {
 
 	const onFormSubmit = async (data) => {
 		try {
-			const response = await fetch(
-				'https://heady-star-waste.glitch.me/auth/login',
-				{
-					mode: 'cors',
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(data),
-				}
-			);
-			const result = await response.json();
+			const result = await postSignIn(data);
 
 			if (!result.token) {
 				setError('root', { message: result.message });
