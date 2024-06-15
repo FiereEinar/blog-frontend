@@ -19,7 +19,12 @@ export const socialLinks = [
     path: 'https://github.com/FiereEinar'
   },
   {
+    name: 'Linked In Account',
+    path: 'https://www.linkedin.com/in/nick-xylan-melloria-91671228b/'
+  },
+  {
     name: 'Facebook Account',
-    path: 'https://www.facebook.com/profile.php?id=100009455672353'
+    path: 'https://www.google.com/'
+    // path: 'https://www.facebook.com/profile.php?id=100009455672353'
   },
 ];

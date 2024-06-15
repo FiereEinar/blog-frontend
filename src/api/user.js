@@ -16,3 +16,19 @@ export const postSignIn = async (data) => {
 
   return result;
 };
+
+export const postSignUp = async (data) => {
+  const response = await fetch(
+    `${BASE_URL}/auth/signup`,
+    {
+      mode: 'cors',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }
+  );
+
+  return response;
+};

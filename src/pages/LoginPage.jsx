@@ -3,8 +3,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { userLoginSchema } from '@/utils/validations/userSchema';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { postSignIn } from '@/api/user';
+import { Logo } from '@/components/ui/logo';
+import { InputField } from '@/components/ui/inputField';
 
 export default function LoginPage() {
 	const navigate = useNavigate();
@@ -32,46 +34,49 @@ export default function LoginPage() {
 	};
 
 	return (
-		<section className='flex flex-col gap-3 justify-center items-center pt-32'>
-			<h1 className='text-3xl'>Login</h1>
-			<form
-				onSubmit={handleSubmit(onFormSubmit)}
-				className='w-[30rem] flex flex-col gap-5'
-			>
-				<div className='flex flex-col'>
-					<label htmlFor='email'>Email:</label>
+		<main className=''>
+			<nav className='p-3 border-b '>
+				<Logo />
+			</nav>
 
-					<input
-						{...register('email')}
-						className='border rounded-sm'
-						type='text'
+			<section className='flex flex-col items-center justify-center pt-10 gap-5'>
+				<h1 className='text-3xl'>Login</h1>
+				<form
+					onSubmit={handleSubmit(onFormSubmit)}
+					className='w-[30rem] border p-5 rounded-md shadow-md flex flex-col gap-2'
+				>
+					<InputField
+						type='email'
 						id='email'
+						label='Email:'
+						register={{ ...register('email') }}
+						error={errors.email}
 					/>
-					{errors.email && (
-						<p className='text-red-500'>{errors.email.message}</p>
-					)}
-				</div>
-				<div className='flex flex-col'>
-					<label htmlFor='password'>Password:</label>
-
-					<input
-						{...register('password')}
-						className='border rounded-sm'
+					<InputField
 						type='password'
 						id='password'
+						label='Password:'
+						register={{ ...register('password') }}
+						error={errors.password}
 					/>
-					{errors.password && (
-						<p className='text-red-500'>{errors.password.message}</p>
-					)}
-				</div>
+					<p className=' text-muted-foreground italic text-sm'>
+						Already have an account?
+						<Link className='underline' to='/signup'>
+							{' '}
+							Sign up
+						</Link>
+					</p>
 
-				<div className='flex w-full justify-end'>
-					<Button disabled={isSubmitting} type='submit' size='sm'>
-						{isSubmitting ? 'Loading' : 'Submit'}
-					</Button>
-				</div>
-				{errors.root && <p className='text-red-500'>{errors.root.message}</p>}
-			</form>
-		</section>
+					<div className='flex w-full justify-end'>
+						<Button disabled={isSubmitting} type='submit' size='sm'>
+							{isSubmitting ? 'Loading...' : 'Submit'}
+						</Button>
+					</div>
+					{errors.root && (
+						<p className='text-red-500 text-sm'>{errors.root.message}</p>
+					)}
+				</form>
+			</section>
+		</main>
 	);
 }

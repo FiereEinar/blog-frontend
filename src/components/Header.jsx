@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { useContext } from 'react';
 import { AuthContext } from '@/pages/Homepage';
+import { Logo } from './ui/logo';
 
 export default function Header() {
 	const isLoggedIn = useContext(AuthContext);
@@ -14,18 +15,8 @@ export default function Header() {
 
 	return (
 		<nav className='w-full border p-3 flex justify-between'>
-			<Link to='/'>
-				<div className='flex items-center justify-start gap-2'>
-					<img
-						className=' w-10 h-10 rounded-full'
-						src='/src/assets/blog-logo.png'
-						alt=''
-					/>
-					<h4 className='text-2xl'>
-						<span className=' text-orange-500'>Blogs</span>.Daily
-					</h4>
-				</div>
-			</Link>
+			<Logo />
+
 			<div className='flex gap-3'>
 				{isLoggedIn ? (
 					<Button onClick={onLogout} size='sm'>

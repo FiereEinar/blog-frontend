@@ -7,6 +7,7 @@ import NotfoundPage from './pages/NotfoundPage';
 import BlogDetailsPage from './pages/BlogDetailsPage';
 import AboutPage from './pages/AboutPage';
 import TopicPage from './pages/TopicPage';
+import SignupPage from './pages/SignupPage';
 
 /**
  * The main entry point is Homepage.jsx
@@ -44,6 +45,10 @@ export default function Route() {
 		{
 			path: '/login',
 			element: <LoginPage />,
+		},
+		{
+			path: '/signup',
+			element: <SignupPage />,
 		},
 	]);
 
