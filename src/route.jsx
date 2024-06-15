@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import NotfoundPage from './pages/NotfoundPage';
 import BlogDetailsPage from './pages/BlogDetailsPage';
 import AboutPage from './pages/AboutPage';
+import TopicPage from './pages/TopicPage';
 
 /**
  * The main entry point is Homepage.jsx
@@ -34,9 +35,12 @@ export default function Route() {
 					path: '/about',
 					element: <AboutPage />,
 				},
+				{
+					path: '/topic/:topicId',
+					element: <TopicPage />,
+				},
 			],
 		},
-
 		{
 			path: '/login',
 			element: <LoginPage />,

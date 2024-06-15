@@ -26,7 +26,7 @@ export default function BlogCard({ blog }) {
 				<div className='flex justify-start mt-2 items-center gap-2'>
 					<img
 						className='w-6 h-6'
-						src='src/assets/comment-icon-2.svg'
+						src='/src/assets/comment-icon-2.svg'
 						alt='comment'
 					/>
 					<p>{blog.comments.length}</p>

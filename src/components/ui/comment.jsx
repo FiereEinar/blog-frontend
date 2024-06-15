@@ -1,6 +1,6 @@
 export function Comment({ author, text, imgURL, date }) {
 	return (
-		<article className='flex flex-col gap-3 text-sm border-y p-3 w-full'>
+		<article className='flex flex-col gap-3 text-sm border-t p-3 w-full'>
 			<div className='flex gap-3'>
 				<img
 					className='w-9 h-9 rounded-full border'

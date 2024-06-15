@@ -49,6 +49,7 @@ export default function CommentSection({ comments }) {
 	return (
 		<aside className='flex flex-col gap-3 mt-10 p-5 border-x max-w-[26rem] w-full'>
 			<h1 className='text-xl mb-3'>Comments</h1>
+
 			<div className='min-h-[30rem] flex flex-col justify-between'>
 				<div className='flex flex-col gap-2'>
 					{comments.length === 0 && (
@@ -80,7 +81,7 @@ export default function CommentSection({ comments }) {
 						<input
 							disabled={!isLoggedIn || isSubmitting}
 							{...register('text')}
-							placeholder={!isLoggedIn ? 'Log in/Sign up to comment.' : ''}
+							placeholder={!isLoggedIn ? 'Log in to comment.' : ''}
 							className=' border border-slate-500 flex-1 rounded-md px-3'
 							type='text'
 							id='text'
