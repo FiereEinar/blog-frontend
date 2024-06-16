@@ -3,7 +3,7 @@ export function Comment({ author, text, imgURL, date }) {
 		<article className='flex flex-col gap-3 text-sm border-t p-3 w-full'>
 			<div className='flex gap-3'>
 				<img
-					className='w-9 h-9 rounded-full border'
+					className='w-9 h-9 rounded-full border object-cover object-center'
 					src={imgURL || '/src/assets/default_user.jpg'}
 					alt='profile'
 				/>

@@ -1,9 +1,10 @@
-export function InputField({ id, label, type, error, register }) {
+export function InputField({ id, label, type, error, register, ...rest }) {
 	return (
 		<div className='flex-1 flex flex-col '>
 			<label htmlFor={id}>{label}</label>
 			<input
 				{...register}
+				{...rest}
 				id={id}
 				className='border border-slate-400 rounded-sm p-1 px-2'
 				type={type}

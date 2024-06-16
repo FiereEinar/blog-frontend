@@ -14,13 +14,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { getUserById, updateUserById } from '@/api/user';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { userUpdateSchema } from '@/utils/validations/userSchema';
 
 import { useToast } from '@/components/ui/use-toast';
 
 export default function ProfileSheet() {
 	const { toast } = useToast();
+	const [profileImage, setProfileImage] = useState(null);
 
 	const userId = localStorage.getItem('UserId');
 
@@ -32,6 +33,10 @@ export default function ProfileSheet() {
 		queryKey: [`user_data_${userId}`],
 		queryFn: () => getUserById(userId),
 	});
+
+	const [profileImagePreview, setProfileImagePreview] = useState(
+		userData?.profile?.imgUrl || '/src/assets/default_user.jpg'
+	);
 
 	const {
 		register,
@@ -49,6 +54,9 @@ export default function ProfileSheet() {
 			setValue('firstName', userData.firstName);
 			setValue('lastName', userData.lastName);
 			setValue('email', userData.email);
+			setProfileImagePreview(
+				userData.profile.imgUrl || '/src/assets/default_user.jpg'
+			);
 		}
 
 		if (error) {
@@ -56,8 +64,18 @@ export default function ProfileSheet() {
 		}
 	}, [userData, setValue, error, setError]);
 
-	const onProfileSubmit = async (data) => {
+	const onProfileSubmit = async (formData) => {
 		try {
+			const data = new FormData();
+
+			// convert the data to a form data so that it can be sent as 'multipart/form-data'
+			if (profileImage) data.append('profileImg', profileImage);
+			data.append('firstName', formData.firstName);
+			data.append('lastName', formData.lastName);
+			data.append('email', formData.email);
+
+			const imageUrl = URL.createObjectURL(profileImage); // to change the photo if response is ok
+
 			const response = await updateUserById(data, userId);
 
 			if (!response.ok) {
@@ -69,6 +87,7 @@ export default function ProfileSheet() {
 				return;
 			}
 
+			setProfileImagePreview(imageUrl); // change photo
 			toast({
 				description: 'Your changes have been saved.',
 			});
@@ -96,9 +115,28 @@ export default function ProfileSheet() {
 
 				{!isLoading && (
 					<form
+						encType='multipart/form-data'
 						onSubmit={handleSubmit(onProfileSubmit)}
 						className='py-5 flex flex-col gap-2'
 					>
+						<img
+							className='w-24 h-24 rounded-md object-cover object-center'
+							src={profileImagePreview}
+							alt=''
+						/>
+
+						<InputField
+							register={{ ...register('profileImg') }}
+							error={errors.profileImg}
+							onChange={(e) => {
+								setProfileImage(e.target.files[0]);
+							}}
+							accept='image/*'
+							type='file'
+							id='profileImg'
+							label='Profile photo:'
+						/>
+
 						<InputField
 							register={{ ...register('firstName') }}
 							error={errors.firstName}
