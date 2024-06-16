@@ -7,10 +7,10 @@ export const navlinks = [
     name: 'Blogs',
     path: '/blogs'
   },
-  {
-    name: 'About',
-    path: '/about'
-  }
+  // {
+  //   name: 'About',
+  //   path: '/about'
+  // }
 ];
 
 export const socialLinks = [

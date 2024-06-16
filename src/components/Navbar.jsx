@@ -26,7 +26,7 @@ export default function Navbar() {
 				{socialLinks.map((link, i) => (
 					<Link key={i} target='_blank' to={link.path}>
 						<NavigationMenuLink
-							className={`${navigationMenuTriggerStyle()} !w-64`}
+							className={`${navigationMenuTriggerStyle()} !w-64 hover:text-orange-500`}
 						>
 							{link.name}
 						</NavigationMenuLink>
@@ -45,7 +45,7 @@ export default function Navbar() {
 					data.map((topic) => (
 						<Link key={topic._id} to={`/topic/${topic._id}`}>
 							<NavigationMenuLink
-								className={`${navigationMenuTriggerStyle()} !w-64`}
+								className={`${navigationMenuTriggerStyle()} !w-64 hover:text-orange-500`}
 							>
 								{topic.title}
 							</NavigationMenuLink>

@@ -2,12 +2,15 @@ import { postSignUp } from '@/api/user';
 import { Button } from '@/components/ui/button';
 import { InputField } from '@/components/ui/inputField';
 import { Logo } from '@/components/ui/logo';
+import { useToast } from '@/components/ui/use-toast';
 import { userSignInSchema } from '@/utils/validations/userSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function SignupPage() {
+	const { toast } = useToast();
+
 	const navigate = useNavigate();
 
 	const {
@@ -25,8 +28,17 @@ export default function SignupPage() {
 				setError('root', {
 					message: 'Encountered a problem while signing you in.',
 				});
+				toast({
+					variant: 'destructive',
+					description: 'Encountered a problem while signing you in.',
+				});
+				return;
 			}
 
+			toast({
+				title: 'Account created successfully!',
+				description: 'Now log in with you account to proceed.',
+			});
 			navigate('/login');
 		} catch (err) {
 			setError('root', { message: err.message });
@@ -35,7 +47,7 @@ export default function SignupPage() {
 
 	return (
 		<main>
-			<nav className='p-3 border-b'>
+			<nav className='p-3 border-b md:px-10'>
 				<Logo />
 			</nav>
 
@@ -43,9 +55,9 @@ export default function SignupPage() {
 				<h1 className='text-3xl'>Sign up</h1>
 				<form
 					onSubmit={handleSubmit(onFormSubmit)}
-					className='border p-5 rounded-md shadow-md flex flex-col gap-2'
+					className='md:w-[31rem] w-[22rem] border p-5 rounded-md shadow-md flex flex-col gap-2'
 				>
-					<div className='flex gap-3'>
+					<div className='flex gap-3 flex-wrap'>
 						<InputField
 							register={{ ...register('firstName') }}
 							error={errors.firstName}

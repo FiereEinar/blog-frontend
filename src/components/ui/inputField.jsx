@@ -1,6 +1,6 @@
 export function InputField({ id, label, type, error, register }) {
 	return (
-		<div className='flex-1 flex flex-col'>
+		<div className='flex-1 flex flex-col '>
 			<label htmlFor={id}>{label}</label>
 			<input
 				{...register}

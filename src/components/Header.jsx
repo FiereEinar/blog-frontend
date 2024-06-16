@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { useContext } from 'react';
 import { AuthContext } from '@/pages/Homepage';
 import { Logo } from './ui/logo';
+import ProfileSheet from './ProfileSheet';
 
 export default function Header() {
 	const isLoggedIn = useContext(AuthContext);
@@ -14,23 +15,40 @@ export default function Header() {
 	};
 
 	return (
-		<nav className='w-full border p-3 flex justify-between'>
+		<nav className='w-full border-b p-3 flex justify-between md:px-10'>
 			<Logo />
 
 			<div className='flex gap-3'>
 				{isLoggedIn ? (
-					<Button onClick={onLogout} size='sm'>
-						Log out
-					</Button>
+					<>
+						<Button
+							variant='ghost'
+							className='md:px-8 flex gap-1'
+							onClick={onLogout}
+							size='sm'
+						>
+							<img className='w-5 h-5' src='/src/assets/logout.svg' alt='' />
+							Log out
+						</Button>
+						<ProfileSheet />
+						{/* <Link to='/profile'>
+							<Button size='sm' variant='ghost' className='flex gap-1 md:px-8'>
+								<img className='w-5 h-5' src='/src/assets/profile.svg' alt='' />
+								Profile
+							</Button>
+						</Link> */}
+					</>
 				) : (
 					<>
 						<Link to='/login'>
-							<Button size='sm' variant='ghost'>
+							<Button className='md:px-8' size='sm' variant='ghost'>
 								Log in
 							</Button>
 						</Link>
 						<Link to='/signup'>
-							<Button size='sm'>Sign up</Button>
+							<Button className='md:px-8' size='sm'>
+								Sign up
+							</Button>
 						</Link>
 					</>
 				)}

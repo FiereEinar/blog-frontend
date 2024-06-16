@@ -26,6 +26,7 @@ export default function LoginPage() {
 				setError('root', { message: result.message });
 			} else {
 				localStorage.setItem('Token', `Bearer ${result.token}`);
+				localStorage.setItem('UserId', result.userId);
 				navigate('/');
 			}
 		} catch (err) {
@@ -35,7 +36,7 @@ export default function LoginPage() {
 
 	return (
 		<main className=''>
-			<nav className='p-3 border-b '>
+			<nav className='p-3 border-b md:px-10'>
 				<Logo />
 			</nav>
 
@@ -43,7 +44,7 @@ export default function LoginPage() {
 				<h1 className='text-3xl'>Login</h1>
 				<form
 					onSubmit={handleSubmit(onFormSubmit)}
-					className='w-[30rem] border p-5 rounded-md shadow-md flex flex-col gap-2'
+					className='md:w-[31rem] w-[22rem] border p-5 rounded-md shadow-md flex flex-col gap-2'
 				>
 					<InputField
 						type='email'
