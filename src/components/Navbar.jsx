@@ -15,7 +15,7 @@ export default function Navbar() {
 	});
 
 	return (
-		<nav className='w-full border-b p-3 flex justify-center items-center gap-5'>
+		<nav className='w-full border-b p-3 flex justify-center items-center gap-5 flex-wrap'>
 			{navlinks.map((link, i) => (
 				<NavLink to={link.path} key={i} className={navlinkClassCallback}>
 					<p>{link.name}</p>

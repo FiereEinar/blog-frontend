@@ -1,7 +1,10 @@
 import { Button } from '@/components/ui/button';
+import useAuth from '@/hooks/useAuth';
 import { Link } from 'react-router-dom';
 
 export default function Landingpage() {
+	const isLoggedIn = useAuth();
+
 	return (
 		<main className='p-5 flex justify-center items-center'>
 			<section className='flex justify-center items-center max-w-[55rem] p-10 pt-10 flex-wrap md:flex-nowrap shadow-xl border rounded-lg text-center md:text-start'>
@@ -15,16 +18,20 @@ export default function Landingpage() {
 						<span className='text-orange-500'>Enjoy</span> your reading
 						experience!
 					</p>
-					<p className='my-1 text-wrap text-center md:text-start'>
-						<span className='text-orange-500'>Sign up now</span> to discover
-						more user features!
-					</p>
+					{!isLoggedIn && (
+						<p className='my-1 text-wrap text-center md:text-start'>
+							<span className='text-orange-500'>Sign up now</span> to discover
+							more user features!
+						</p>
+					)}
 					<div className='flex gap-2 pt-2 justify-center md:justify-start'>
-						<Link to='/signup'>
-							<Button size='sm'>Sign up</Button>
-						</Link>
+						{!isLoggedIn && (
+							<Link to='/signup'>
+								<Button size='sm'>Sign up</Button>
+							</Link>
+						)}
 						<Link to='/blogs'>
-							<Button size='sm' variant='link'>
+							<Button size='sm' variant='ghost'>
 								Start reading
 								<img src='/src/assets/arrow.svg' alt='' />
 							</Button>

@@ -1,7 +1,7 @@
-import LoadingScreen from '@/components/LoadingScreen';
 import { useQuery } from '@tanstack/react-query';
 import BlogCard from '@/components/BlogCard';
 import { fetchBlogs } from '@/api/blog';
+import { BlogPageLoadingScreen } from '@/components/LoadingScreens';
 
 export default function Blogpage() {
 	const { data, error, isLoading } = useQuery({
@@ -10,7 +10,7 @@ export default function Blogpage() {
 	});
 
 	if (isLoading) {
-		return <LoadingScreen />;
+		return <BlogPageLoadingScreen />;
 	}
 
 	if (error) {

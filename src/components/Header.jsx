@@ -15,7 +15,7 @@ export default function Header() {
 	};
 
 	return (
-		<nav className='w-full border-b p-3 flex justify-between md:px-10'>
+		<nav className='w-full border-b p-3 flex justify-between items-center md:px-10'>
 			<Logo />
 
 			<div className='flex gap-3'>
@@ -28,15 +28,9 @@ export default function Header() {
 							size='sm'
 						>
 							<img className='w-5 h-5' src='/src/assets/logout.svg' alt='' />
-							Log out
+							<span className='sm:flex hidden'>Log out</span>
 						</Button>
 						<ProfileSheet />
-						{/* <Link to='/profile'>
-							<Button size='sm' variant='ghost' className='flex gap-1 md:px-8'>
-								<img className='w-5 h-5' src='/src/assets/profile.svg' alt='' />
-								Profile
-							</Button>
-						</Link> */}
 					</>
 				) : (
 					<>
@@ -45,7 +39,7 @@ export default function Header() {
 								Log in
 							</Button>
 						</Link>
-						<Link to='/signup'>
+						<Link className='sm:flex hidden' to='/signup'>
 							<Button className='md:px-8' size='sm'>
 								Sign up
 							</Button>
