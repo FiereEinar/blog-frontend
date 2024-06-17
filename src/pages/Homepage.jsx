@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 import useAuth from '@/hooks/useAuth';
@@ -15,6 +16,7 @@ export default function Homepage() {
 				<Header />
 				<Navbar />
 				<Outlet />
+				<Footer />
 			</section>
 		</AuthContext.Provider>
 	);

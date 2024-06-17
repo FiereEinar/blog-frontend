@@ -18,7 +18,7 @@ export default function Blogpage() {
 	}
 
 	return (
-		<main className='flex flex-col gap-3 p-3'>
+		<main className='flex flex-col gap-3 p-3 min-h-screen'>
 			<section className='flex w-full gap-3 flex-wrap justify-center items-stretch'>
 				{data.map((blog) => (
 					<BlogCard key={blog._id} blog={blog} />

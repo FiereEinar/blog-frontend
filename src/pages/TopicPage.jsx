@@ -37,7 +37,7 @@ export default function TopicPage() {
 	}
 
 	return (
-		<main>
+		<main className='min-h-screen'>
 			<h1 className='text-center text-2xl p-5'>
 				Currently Browsing Topic: {topicTitle}
 			</h1>

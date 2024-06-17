@@ -6,9 +6,9 @@ export default function Landingpage() {
 	const isLoggedIn = useAuth();
 
 	return (
-		<main className='p-5 flex justify-center items-center'>
-			<section className='flex justify-center items-center max-w-[55rem] p-10 pt-10 flex-wrap md:flex-nowrap shadow-xl border rounded-lg text-center md:text-start'>
-				<div>
+		<main className='p-5 flex justify-center min-h-screen'>
+			<section className='flex justify-center items-center max-w-[55rem] h-fit p-10 flex-wrap md:flex-nowrap shadow-xl border rounded-lg text-center md:text-start'>
+				<div className='h-fit'>
 					<h1 className='text-3xl pb-1 font-medium'>
 						Welcome to <span className='text-orange-500'>Blogs</span>.Daily!
 					</h1>
@@ -20,7 +20,7 @@ export default function Landingpage() {
 					</p>
 					{!isLoggedIn && (
 						<p className='my-1 text-wrap text-center md:text-start'>
-							<span className='text-orange-500'>Sign up now</span> to discover
+							<span className='text-orange-500'>Sign up now</span> and discover
 							more user features!
 						</p>
 					)}
@@ -38,6 +38,7 @@ export default function Landingpage() {
 						</Link>
 					</div>
 				</div>
+
 				<img
 					className='md:w-[28rem] w-[20rem]'
 					src='/src/assets/landing-page-img.png'

@@ -1,6 +1,6 @@
 export default function LoadingScreen() {
 	return (
-		<section className='flex flex-col gap-5 h-full items-center pt-36'>
+		<section className='flex flex-col gap-5 h-full items-center pt-36 min-h-screen'>
 			<div role='status'>
 				<svg
 					aria-hidden='true'
