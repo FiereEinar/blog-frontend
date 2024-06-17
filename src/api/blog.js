@@ -3,8 +3,6 @@ import axios from "axios";
 const BASE_URL = 'https://heady-star-waste.glitch.me';
 
 export const fetchBlogs = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 15000))
-
   const { data } = await axios.get(`${BASE_URL}/blog`)
 
   return data.data;
