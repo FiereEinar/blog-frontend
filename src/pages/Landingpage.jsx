@@ -33,7 +33,7 @@ export default function Landingpage() {
 						<Link to='/blogs'>
 							<Button size='sm' variant='ghost'>
 								Start reading
-								<img src='/public/arrow.svg' alt='' />
+								<img src='/arrow.svg' alt='' />
 							</Button>
 						</Link>
 					</div>
@@ -41,7 +41,7 @@ export default function Landingpage() {
 
 				<img
 					className='md:w-[28rem] w-[20rem]'
-					src='/public/landing-page-img.png'
+					src='/landing-page-img.png'
 					alt=''
 				/>
 			</section>

@@ -66,7 +66,7 @@ export default function CommentForm() {
 					className=' disabled:opacity-50 rounded-r-md flex border justify-center items-center px-2 gap-1'
 				>
 					Comment
-					<img className='w-7 h-7' src='/public/send.svg' alt='' />
+					<img className='w-7 h-7' src='/send.svg' alt='' />
 				</Button>
 			</form>
 		</div>

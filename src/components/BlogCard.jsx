@@ -24,11 +24,7 @@ export default function BlogCard({ blog }) {
 					{format(blog.dateAdded, 'MMMM dd, yyyy')}
 				</p>
 				<div className='flex justify-start mt-2 items-center gap-2'>
-					<img
-						className='w-6 h-6'
-						src='/public/comment-icon-2.svg'
-						alt='comment'
-					/>
+					<img className='w-6 h-6' src='/comment-icon-2.svg' alt='comment' />
 					<p>{blog.comments.length}</p>
 				</div>
 			</Link>

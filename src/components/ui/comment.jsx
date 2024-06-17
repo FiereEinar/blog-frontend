@@ -4,7 +4,7 @@ export function Comment({ author, text, imgURL, date }) {
 			<div className='flex gap-3'>
 				<img
 					className='w-9 h-9 rounded-full border object-cover object-center'
-					src={imgURL || '/public/default_user.jpg'}
+					src={imgURL || '/default_user.jpg'}
 					alt='profile'
 				/>
 				<div>

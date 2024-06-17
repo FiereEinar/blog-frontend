@@ -27,7 +27,7 @@ export default function Header() {
 							onClick={onLogout}
 							size='sm'
 						>
-							<img className='w-5 h-5' src='/public/logout.svg' alt='' />
+							<img className='w-5 h-5' src='/logout.svg' alt='' />
 							<span className='sm:flex hidden'>Log out</span>
 						</Button>
 						<ProfileSheet />

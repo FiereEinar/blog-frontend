@@ -17,7 +17,7 @@ export default function ProfileSheet() {
 		<Sheet>
 			<SheetTrigger asChild>
 				<Button size='sm' variant='ghost' className='flex gap-1 md:px-8'>
-					<img className='w-5 h-5' src='/public/profile.svg' alt='' />
+					<img className='w-5 h-5' src='/profile.svg' alt='' />
 					<span className='sm:flex hidden'>Profile</span>
 				</Button>
 			</SheetTrigger>

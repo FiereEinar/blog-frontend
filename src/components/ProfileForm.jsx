@@ -26,7 +26,7 @@ export default function ProfileForm() {
 	});
 
 	const [profileImagePreview, setProfileImagePreview] = useState(
-		userData?.profile?.imgUrl || '/public/default_user.jpg'
+		userData?.profile?.imgUrl || '/default_user.jpg'
 	);
 
 	const {
@@ -45,9 +45,7 @@ export default function ProfileForm() {
 			setValue('firstName', userData.firstName);
 			setValue('lastName', userData.lastName);
 			setValue('email', userData.email);
-			setProfileImagePreview(
-				userData.profile.imgUrl || '/public/default_user.jpg'
-			);
+			setProfileImagePreview(userData.profile.imgUrl || '/default_user.jpg');
 		}
 
 		if (error) {
