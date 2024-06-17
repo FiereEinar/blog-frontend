@@ -11,7 +11,7 @@ export default function Footer() {
 					<a href='https://github.com/FiereEinar' target='_blank'>
 						<img
 							className='transition-all duration-1000 w-8 h-8 rounded-full hover:rotate-[720deg]'
-							src='/src/assets/github.png'
+							src='/public/github.png'
 							alt=''
 						/>
 					</a>
