@@ -1,8 +1,27 @@
-# React + Vite
+# Blog Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A blog interface built with React, Tailwind CSS, Vite, and ShadCN. It connects with my backend blog API, offering a modern and responsive platform for managing and viewing blog content.For learning purposes only.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Log in/Sign up
+- Blog comment
+- Account management
+
+## Technologies Used
+
+- Javascript
+- React
+- Tailwind
+- Vite
+- Shadcn
+- Vercel
+
+## Libraries Used
+
+- [react-hook-form](https://www.npmjs.com/package/react-hook-form) Simplifies form states, errors, and validations.
+- [react-router-dom](https://reactrouter.com/en/main) Contains bindings for using React Router in web applications.
+- [zod](https://zod.dev/) Schema validation for forms.
+- [@tanstack/react-query](https://www.npmjs.com/package/react-query) Querying requests for better performance.
+- [axios](https://axios-http.com/docs/intro) A promise-based HTTP Client for node.js and the browser.
+- [date-fns](https://date-fns.org/docs/Getting-Started) Provides the most comprehensive, yet simple and consistent toolset for manipulating JavaScript dates
