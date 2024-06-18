@@ -4,7 +4,6 @@ const BASE_URL = 'https://heady-star-waste.glitch.me';
 
 export const fetchBlogs = async () => {
   const { data } = await axios.get(`${BASE_URL}/blog`)
-
   return data.data;
 };
 

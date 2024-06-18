@@ -7,6 +7,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { postSignIn } from '@/api/user';
 import { Logo } from '@/components/ui/logo';
 import { InputField } from '@/components/ui/inputField';
+import useLoadingTracker from '@/hooks/useLoadingTracker';
+import { toast } from '@/components/ui/use-toast';
 
 export default function LoginPage() {
 	const navigate = useNavigate();
@@ -17,6 +19,14 @@ export default function LoginPage() {
 		setError,
 		formState: { errors, isSubmitting },
 	} = useForm({ resolver: zodResolver(userLoginSchema) });
+
+	useLoadingTracker(isSubmitting, 3, () => {
+		toast({
+			title: 'Hang in there.',
+			description:
+				'The server is still waking up from its sleep, this would only take up to 20-30 seconds :)',
+		});
+	});
 
 	const onFormSubmit = async (data) => {
 		try {

@@ -2,8 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import BlogCard from '@/components/BlogCard';
 import { fetchBlogs } from '@/api/blog';
 import { BlogPageLoadingScreen } from '@/components/LoadingScreens';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { useToast } from '@/components/ui/use-toast';
+import useLoadingTracker from '@/hooks/useLoadingTracker';
 
 export default function Blogpage() {
 	const { toast } = useToast();
@@ -13,31 +14,13 @@ export default function Blogpage() {
 		queryFn: fetchBlogs,
 	});
 
-	const [secondsElapsed, setSecondsElapsed] = useState(0);
-	const [messageShown, setMessageShown] = useState(false);
-
-	useEffect(() => {
-		let intervalId = null;
-
-		if (isLoading) {
-			intervalId = setInterval(() => {
-				setSecondsElapsed((prevSecondsElapsed) => prevSecondsElapsed + 1);
-			}, 1000);
-		} else {
-			setSecondsElapsed(0);
-		}
-
-		if (secondsElapsed > 3 && !messageShown) {
-			toast({
-				title: 'Hang in there.',
-				description:
-					'The server is still waking up from its sleep, this would only take up to 20-30 seconds :)',
-			});
-			setMessageShown(true);
-		}
-
-		if (intervalId) return () => clearInterval(intervalId);
-	}, [isLoading, secondsElapsed, messageShown, toast]);
+	useLoadingTracker(isLoading, 3, () => {
+		toast({
+			title: 'Hang in there.',
+			description:
+				'The server is still waking up from its sleep, this would only take up to 20-30 seconds :)',
+		});
+	});
 
 	if (isLoading) {
 		return <BlogPageLoadingScreen />;

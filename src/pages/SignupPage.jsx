@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { InputField } from '@/components/ui/inputField';
 import { Logo } from '@/components/ui/logo';
 import { useToast } from '@/components/ui/use-toast';
+import useLoadingTracker from '@/hooks/useLoadingTracker';
 import { userSignInSchema } from '@/utils/validations/userSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -19,6 +20,14 @@ export default function SignupPage() {
 		setError,
 		formState: { errors, isSubmitting },
 	} = useForm({ resolver: zodResolver(userSignInSchema) });
+
+	useLoadingTracker(isSubmitting, 3, () => {
+		toast({
+			title: 'Hang in there.',
+			description:
+				'The server is still waking up from its sleep, this would only take up to 20-30 seconds :)',
+		});
+	});
 
 	const onFormSubmit = async (data) => {
 		try {
