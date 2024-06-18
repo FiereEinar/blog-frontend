@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Homepage from './pages/Homepage';
 import Blogpage from './pages/Blogpage';
 import Landingpage from './pages/Landingpage';
 import LoginPage from './pages/LoginPage';
@@ -7,12 +6,13 @@ import NotfoundPage from './pages/NotfoundPage';
 import BlogDetailsPage from './pages/BlogDetailsPage';
 import TopicPage from './pages/TopicPage';
 import SignupPage from './pages/SignupPage';
+import App from './App';
 
 export default function Route() {
 	const route = createBrowserRouter([
 		{
 			path: '/',
-			element: <Homepage />,
+			element: <App />,
 			errorElement: <NotfoundPage />,
 			children: [
 				{

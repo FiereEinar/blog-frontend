@@ -1,12 +1,12 @@
 import { Button } from '../ui/button';
 import { useContext } from 'react';
-import { AuthContext } from '@/pages/Homepage';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { userCommentSchema } from '@/utils/validations/userSchema';
 import { useParams } from 'react-router-dom';
 import { postComment } from '@/api/comment';
 import { useToast } from '../ui/use-toast';
+import { AuthContext } from '@/App';
 
 export default function CommentForm() {
 	const { toast } = useToast();

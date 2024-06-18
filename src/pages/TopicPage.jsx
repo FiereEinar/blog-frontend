@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom';
 export default function TopicPage() {
 	const { topicId } = useParams();
 
-	// this might seem odd but the topics are already queried in the Navbar when the Homepage is rendered
+	// this might seem odd but the topics are already queried in the Navbar when the App is rendered
 	const {
 		data: topics,
 		error: topicsError,
