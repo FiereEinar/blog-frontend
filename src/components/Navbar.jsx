@@ -1,19 +1,9 @@
-import { navlinks, socialLinks } from '@/constants';
-import { Link, NavLink } from 'react-router-dom';
-import {
-	NavigationMenuLink,
-	navigationMenuTriggerStyle,
-} from './ui/navigation-menu';
-import NavigationWrapper from './NavigationWrapper';
-import { useQuery } from '@tanstack/react-query';
-import { fetchTopics } from '@/api/topic';
+import { navlinks } from '@/constants';
+import { NavLink } from 'react-router-dom';
+import { navigationMenuTriggerStyle } from './ui/navigation-menu';
+import { NavSocialLinks, NavTopics } from './ui/nav';
 
 export default function Navbar() {
-	const { data, error, isLoading } = useQuery({
-		queryKey: ['topics'],
-		queryFn: fetchTopics,
-	});
-
 	return (
 		<nav className='w-full border-b p-3 flex justify-center items-center gap-5 flex-wrap'>
 			{navlinks.map((link, i) => (
@@ -21,37 +11,8 @@ export default function Navbar() {
 					<p>{link.name}</p>
 				</NavLink>
 			))}
-
-			<NavigationWrapper title='Socials'>
-				{socialLinks.map((link, i) => (
-					<Link key={i} target='_blank' to={link.path}>
-						<NavigationMenuLink
-							className={`${navigationMenuTriggerStyle()} !w-64 hover:text-orange-500`}
-						>
-							{link.name}
-						</NavigationMenuLink>
-					</Link>
-				))}
-			</NavigationWrapper>
-
-			<NavigationWrapper title='Topics'>
-				{isLoading && (
-					<p className='text-muted-foreground'>Fetching topics...</p>
-				)}
-				{error && (
-					<p className='text-muted-foreground'>Error fetching topics</p>
-				)}
-				{data &&
-					data.map((topic) => (
-						<Link key={topic._id} to={`/topic/${topic._id}`}>
-							<NavigationMenuLink
-								className={`${navigationMenuTriggerStyle()} !w-64 hover:text-orange-500`}
-							>
-								{topic.title}
-							</NavigationMenuLink>
-						</Link>
-					))}
-			</NavigationWrapper>
+			<NavSocialLinks />
+			<NavTopics />
 		</nav>
 	);
 }

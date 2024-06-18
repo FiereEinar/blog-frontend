@@ -3,6 +3,7 @@ export function InputField({ id, label, type, error, register, ...rest }) {
 		<div className='flex-1 flex flex-col '>
 			<label htmlFor={id}>{label}</label>
 			<input
+				autoComplete='true'
 				{...register}
 				{...rest}
 				id={id}

@@ -1,13 +1,17 @@
 import { fetchBlogByTopicId } from '@/api/blog';
 import { fetchTopics } from '@/api/topic';
-import BlogCard from '@/components/BlogCard';
-import LoadingScreen from '@/components/LoadingScreen';
+import { BlogFeed } from '@/components/BlogFeed';
+import { DefaultLoadingScreen } from '@/components/LoadingScreens';
+import { MainContainer } from '@/components/ui/container';
+import { toast } from '@/components/ui/use-toast';
+import useLoadingTracker from '@/hooks/useLoadingTracker';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
 export default function TopicPage() {
 	const { topicId } = useParams();
 
+	// this might seem odd but the topics are already queried in the Navbar when the Homepage is rendered
 	const {
 		data: topics,
 		error: topicsError,
@@ -28,8 +32,16 @@ export default function TopicPage() {
 		queryFn: () => fetchBlogByTopicId(topicId),
 	});
 
+	useLoadingTracker(blogsLoading, 3, () => {
+		toast({
+			title: 'Hang in there.',
+			description:
+				'The server is still waking up from its sleep, this would only take up to 20-30 seconds :)',
+		});
+	});
+
 	if (blogsLoading || topicsLoading) {
-		return <LoadingScreen />;
+		return <DefaultLoadingScreen />;
 	}
 
 	if (blogsError || topicsError) {
@@ -37,20 +49,11 @@ export default function TopicPage() {
 	}
 
 	return (
-		<main className='min-h-screen'>
-			<h1 className='text-center text-2xl p-5'>
+		<MainContainer>
+			<h1 className='text-center text-2xl pb-5'>
 				Currently Browsing Topic: {topicTitle}
 			</h1>
-			<section className='flex w-full gap-3 flex-wrap justify-center items-stretch'>
-				{blogs.length === 0 && (
-					<p className='italic text-muted-foreground'>
-						No blogs available for this topic.
-					</p>
-				)}
-				{blogs.map((blog) => (
-					<BlogCard key={blog._id} blog={blog} />
-				))}
-			</section>
-		</main>
+			<BlogFeed blogs={blogs} />
+		</MainContainer>
 	);
 }

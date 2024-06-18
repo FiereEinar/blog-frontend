@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import BlogCard from '@/components/BlogCard';
 import { fetchBlogs } from '@/api/blog';
 import { BlogPageLoadingScreen } from '@/components/LoadingScreens';
-// import { useEffect, useState } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import useLoadingTracker from '@/hooks/useLoadingTracker';
+import { BlogFeed } from '@/components/BlogFeed';
+import { MainContainer } from '@/components/ui/container';
 
 export default function Blogpage() {
 	const { toast } = useToast();
@@ -31,12 +31,8 @@ export default function Blogpage() {
 	}
 
 	return (
-		<main className='flex flex-col gap-3 p-3 min-h-screen'>
-			<section className='flex w-full gap-3 flex-wrap justify-center items-stretch'>
-				{data.map((blog) => (
-					<BlogCard key={blog._id} blog={blog} />
-				))}
-			</section>
-		</main>
+		<MainContainer>
+			<BlogFeed blogs={data} />
+		</MainContainer>
 	);
 }

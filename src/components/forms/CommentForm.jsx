@@ -1,4 +1,4 @@
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import { useContext } from 'react';
 import { AuthContext } from '@/pages/Homepage';
 import { useForm } from 'react-hook-form';
@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { userCommentSchema } from '@/utils/validations/userSchema';
 import { useParams } from 'react-router-dom';
 import { postComment } from '@/api/comment';
-import { useToast } from './ui/use-toast';
+import { useToast } from '../ui/use-toast';
 
 export default function CommentForm() {
 	const { toast } = useToast();
@@ -55,6 +55,7 @@ export default function CommentForm() {
 				<input
 					disabled={!isLoggedIn || isSubmitting}
 					{...register('text')}
+					autoComplete='true'
 					placeholder={!isLoggedIn ? 'Log in to comment.' : ''}
 					className=' border border-slate-500 flex-1 rounded-md px-3'
 					type='text'
