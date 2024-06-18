@@ -1,3 +1,4 @@
+import ProfileForm from './forms/ProfileForm';
 import { Button } from '@/components/ui/button';
 import {
 	Sheet,
@@ -9,8 +10,6 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from '@/components/ui/sheet';
-
-import ProfileForm from './ProfileForm';
 
 export default function ProfileSheet() {
 	return (

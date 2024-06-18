@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { InputField } from './ui/inputField';
+import { InputField } from '../ui/inputField';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { getUserById, updateUserById } from '@/api/user';
@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { userUpdateSchema } from '@/utils/validations/userSchema';
 
 import { useToast } from '@/components/ui/use-toast';
-import { ProfileSheetLoadingScreen } from './LoadingScreens';
+import { ProfileSheetLoadingScreen } from '../LoadingScreens';
 
 export default function ProfileForm() {
 	const { toast } = useToast();

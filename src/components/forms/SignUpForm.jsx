@@ -1,12 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { useToast } from './ui/use-toast';
 import { userSignInSchema } from '@/utils/validations/userSchema';
 import useLoadingTracker from '@/hooks/useLoadingTracker';
 import { postSignUp } from '@/api/user';
-import { InputField } from './ui/inputField';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
+import { useToast } from '../ui/use-toast';
+import { InputField } from '../ui/inputField';
 
 export default function SignUpForm() {
 	const { toast } = useToast();
