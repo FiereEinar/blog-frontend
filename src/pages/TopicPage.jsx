@@ -1,7 +1,7 @@
-import { fetchBlogByTopicId } from '@/api/blog';
+import { fetchBlogs } from '@/api/blog';
 import { fetchTopics } from '@/api/topic';
 import { BlogFeed } from '@/components/BlogFeed';
-import { DefaultLoadingScreen } from '@/components/LoadingScreens';
+import { BlogPageLoadingScreen } from '@/components/LoadingScreens';
 import { MainContainer } from '@/components/ui/container';
 import { toast } from '@/components/ui/use-toast';
 import useLoadingTracker from '@/hooks/useLoadingTracker';
@@ -10,6 +10,8 @@ import { useParams } from 'react-router-dom';
 
 export default function TopicPage() {
 	const { topicId } = useParams();
+	let blogsOfTopic = [];
+	let topicTitle = null;
 
 	// this might seem odd but the topics are already queried in the Navbar when the App is rendered
 	const {
@@ -21,16 +23,19 @@ export default function TopicPage() {
 		queryFn: fetchTopics,
 	});
 
-	const topicTitle = topics.find((topic) => topic._id === topicId).title;
+	if (topicTitle)
+		topicTitle = topics.find((topic) => topic._id === topicId).title;
 
 	const {
 		data: blogs,
 		error: blogsError,
 		isLoading: blogsLoading,
 	} = useQuery({
-		queryKey: [`blogs_topic_${topicId}`],
-		queryFn: () => fetchBlogByTopicId(topicId),
+		queryKey: ['blogs'],
+		queryFn: fetchBlogs,
 	});
+
+	if (blogs) blogsOfTopic = blogs.filter((x) => x.topic._id === topicId);
 
 	useLoadingTracker(blogsLoading, 3, () => {
 		toast({
@@ -41,7 +46,7 @@ export default function TopicPage() {
 	});
 
 	if (blogsLoading || topicsLoading) {
-		return <DefaultLoadingScreen />;
+		return <BlogPageLoadingScreen />;
 	}
 
 	if (blogsError || topicsError) {
@@ -53,7 +58,7 @@ export default function TopicPage() {
 			<h1 className='text-center text-2xl pb-5'>
 				Currently Browsing Topic: {topicTitle}
 			</h1>
-			<BlogFeed blogs={blogs} />
+			<BlogFeed blogs={blogsOfTopic} />
 		</MainContainer>
 	);
 }

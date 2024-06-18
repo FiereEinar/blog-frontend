@@ -1,4 +1,4 @@
-import { fetchBlogById } from '@/api/blog';
+import { fetchBlogs } from '@/api/blog';
 import BlogInfo from '@/components/BlogInfo';
 import CommentSection from '@/components/CommentSection';
 import { DefaultLoadingScreen } from '@/components/LoadingScreens';
@@ -9,10 +9,11 @@ import { useParams } from 'react-router-dom';
 
 export default function BlogDetailsPage() {
 	const { blogId } = useParams();
+	let blog = null;
 
 	const { data, error, isLoading } = useQuery({
-		queryKey: [`blog_post_${blogId}`],
-		queryFn: () => fetchBlogById(blogId),
+		queryKey: ['blogs'],
+		queryFn: fetchBlogs,
 	});
 
 	useLoadingTracker(isLoading, 3, () => {
@@ -22,6 +23,8 @@ export default function BlogDetailsPage() {
 				'The server is still waking up from its sleep, this would only take up to 20-30 seconds :)',
 		});
 	});
+
+	if (data) blog = data.find((x) => x._id === blogId);
 
 	if (isLoading) {
 		return <DefaultLoadingScreen />;
@@ -33,8 +36,8 @@ export default function BlogDetailsPage() {
 
 	return (
 		<main className='flex justify-center flex-wrap gap-10'>
-			<BlogInfo blog={data} />
-			<CommentSection comments={data.comments} />
+			<BlogInfo blog={blog} />
+			<CommentSection comments={blog.comments} />
 		</main>
 	);
 }

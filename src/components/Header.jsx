@@ -1,12 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
-import { useContext } from 'react';
 import { Logo } from './ui/logo';
 import ProfileSheet from './ProfileSheet';
-import { AuthContext } from '@/App';
+import useAuth from '@/hooks/useAuth';
 
 export default function Header() {
-	const isLoggedIn = useContext(AuthContext);
+	const isLoggedIn = useAuth();
 	const navigate = useNavigate();
 
 	const onLogout = () => {
