@@ -20,6 +20,7 @@ export default function ProfileForm() {
 		data: userData,
 		error,
 		isLoading,
+		refetch,
 	} = useQuery({
 		queryKey: [`user_data_${userId}`],
 		queryFn: () => getUserById(userId),
@@ -63,9 +64,6 @@ export default function ProfileForm() {
 			data.append('lastName', formData.lastName);
 			data.append('email', formData.email);
 
-			let imageUrl = null;
-			if (profileImage) imageUrl = URL.createObjectURL(profileImage); // to change the photo if response is ok
-
 			const response = await updateUserById(data, userId);
 
 			if (!response.ok) {
@@ -77,10 +75,10 @@ export default function ProfileForm() {
 				return;
 			}
 
-			if (imageUrl) setProfileImagePreview(imageUrl); // change photo
 			toast({
 				description: 'Your changes have been saved.',
 			});
+			refetch();
 		} catch (err) {
 			setError('root', { message: err.message });
 		}

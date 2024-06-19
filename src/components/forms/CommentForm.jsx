@@ -7,7 +7,7 @@ import { postComment } from '@/api/comment';
 import { useToast } from '../ui/use-toast';
 import useAuth from '@/hooks/useAuth';
 
-export default function CommentForm() {
+export default function CommentForm({ refetch }) {
 	const { toast } = useToast();
 	const { blogId } = useParams();
 	const isLoggedIn = useAuth();
@@ -34,6 +34,7 @@ export default function CommentForm() {
 					'Try visiting other pages then come back here to see your comment.',
 			});
 			reset();
+			refetch();
 		} catch (err) {
 			setError('root', { message: err.message });
 		}

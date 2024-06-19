@@ -11,7 +11,7 @@ export default function BlogDetailsPage() {
 	const { blogId } = useParams();
 	let blog = null;
 
-	const { data, error, isLoading } = useQuery({
+	const { data, error, isLoading, refetch } = useQuery({
 		queryKey: ['blogs'],
 		queryFn: fetchBlogs,
 	});
@@ -37,7 +37,7 @@ export default function BlogDetailsPage() {
 	return (
 		<main className='flex justify-center flex-wrap gap-10'>
 			<BlogInfo blog={blog} />
-			<CommentSection comments={blog.comments} />
+			<CommentSection comments={blog.comments} refetch={refetch} />
 		</main>
 	);
 }
