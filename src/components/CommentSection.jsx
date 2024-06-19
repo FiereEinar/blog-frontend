@@ -7,7 +7,7 @@ export default function CommentSection({ comments, refetch }) {
 			<h1 className='text-xl mb-3'>Comments</h1>
 
 			<div className='min-h-[30rem] flex flex-col justify-between'>
-				<CommentFeed comments={comments} />
+				<CommentFeed comments={comments} refetch={refetch} />
 				<CommentForm refetch={refetch} />
 			</div>
 		</aside>

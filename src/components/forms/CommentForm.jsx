@@ -29,9 +29,7 @@ export default function CommentForm({ refetch }) {
 			}
 
 			toast({
-				title: 'Comment posted successfully!',
-				description:
-					'Try visiting other pages then come back here to see your comment.',
+				description: 'Comment posted successfully!',
 			});
 			reset();
 			refetch();
