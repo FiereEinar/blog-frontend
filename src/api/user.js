@@ -1,4 +1,7 @@
+import { getTokenFromLocalStorage } from "@/utils/localstorage";
+
 const BASE_URL = 'https://heady-star-waste.glitch.me';
+const TOKEN = getTokenFromLocalStorage();
 
 export const postSignIn = async (data) => {
   try {
@@ -52,7 +55,7 @@ export const getUserById = async (userId) => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: localStorage.getItem('Token')
+          Authorization: TOKEN
         },
       }
     );
@@ -76,7 +79,7 @@ export const updateUserById = async (data, userId) => {
         headers: {
           // 'Content-Type': 'application/json',
           // 'Content-Type': 'multipart/form-data',
-          Authorization: localStorage.getItem('Token')
+          Authorization: TOKEN
         },
         body: data
         // body: JSON.stringify(data)

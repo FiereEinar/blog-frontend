@@ -41,10 +41,10 @@ export default function CommentForm({ refetch }) {
 	return (
 		<div>
 			{errors.text && (
-				<p className='text-red-500 my-2'>{errors.text.message}</p>
+				<p className='text-red-500 my-2 text-sm'>{errors.text.message}</p>
 			)}
 			{errors.root && (
-				<p className='text-red-500 my-2'>{errors.root.message}</p>
+				<p className='text-red-500 my-2 text-sm'>{errors.root.message}</p>
 			)}
 			<form
 				onSubmit={handleSubmit(onCommentSubmit)}

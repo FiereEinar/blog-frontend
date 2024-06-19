@@ -9,12 +9,13 @@ import { userUpdateSchema } from '@/utils/validations/userSchema';
 
 import { useToast } from '@/components/ui/use-toast';
 import { ProfileSheetLoadingScreen } from '../LoadingScreens';
+import { getUserIdFromLocalStorage } from '@/utils/localstorage';
 
 export default function ProfileForm() {
 	const { toast } = useToast();
 	const [profileImage, setProfileImage] = useState(null);
 
-	const userId = localStorage.getItem('UserId');
+	const userId = getUserIdFromLocalStorage();
 
 	const {
 		data: userData,

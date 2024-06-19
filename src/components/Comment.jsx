@@ -7,12 +7,11 @@ import { userCommentSchema } from '@/utils/validations/userSchema';
 import { deleteComment, postEditComment } from '@/api/comment';
 import { useParams } from 'react-router-dom';
 import { useToast } from './ui/use-toast';
+import { getUserIdFromLocalStorage } from '@/utils/localstorage';
 
 /**
- *
  * CommentEditForm will handle the form for editing a comment
  * CommentInfo will handle the deletion of a comment
- *
  */
 export function Comment(props) {
 	const [editMode, setEditMode] = useState(false);
@@ -62,7 +61,7 @@ function CommentEditForm({
 	editMode,
 	setEditMode,
 }) {
-	const currentUserId = localStorage.getItem('UserId');
+	const currentUserId = getUserIdFromLocalStorage();
 	const isLoggedIn = useAuth();
 	const { blogId } = useParams();
 	const { toast } = useToast();
@@ -143,6 +142,10 @@ function CommentEditForm({
 	);
 }
 
+/**
+ * should only be used inside a blog details page that has the blogId in the params
+ * because it relies on that blogId to update the comment
+ */
 function CommentInfo({
 	author,
 	text,
@@ -154,7 +157,7 @@ function CommentInfo({
 	editMode,
 	setEditMode,
 }) {
-	const currentUserId = localStorage.getItem('UserId');
+	const currentUserId = getUserIdFromLocalStorage();
 	const isLoggedIn = useAuth();
 	const { toast } = useToast();
 	const { blogId } = useParams();

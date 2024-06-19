@@ -3,13 +3,14 @@ import { Button } from './ui/button';
 import { Logo } from './ui/logo';
 import ProfileSheet from './ProfileSheet';
 import useAuth from '@/hooks/useAuth';
+import { removeTokenFromLocalStorage } from '@/utils/localstorage';
 
 export default function Header() {
 	const isLoggedIn = useAuth();
 	const navigate = useNavigate();
 
 	const onLogout = () => {
-		localStorage.removeItem('Token');
+		removeTokenFromLocalStorage();
 		navigate('/login');
 	};
 

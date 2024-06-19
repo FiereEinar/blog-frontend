@@ -6,7 +6,7 @@ export default function LandingPageCard() {
 	const isLoggedIn = useAuth();
 
 	return (
-		<section className='flex justify-center items-center max-w-[55rem] h-fit p-10 flex-wrap md:flex-nowrap shadow-xl border rounded-lg text-center md:text-start'>
+		<section className='relative flex justify-center items-center max-w-[55rem] h-fit p-10 flex-wrap md:flex-nowrap shadow-xl border rounded-lg text-center md:text-start bg-white z-50'>
 			<div className='h-fit'>
 				<h1 className='text-3xl pb-1 font-medium'>
 					Welcome to <span className='text-orange-500'>Blogs</span>.Daily!

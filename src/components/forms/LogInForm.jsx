@@ -7,6 +7,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { InputField } from '../ui/inputField';
 import { Button } from '../ui/button';
 import { useToast } from '../ui/use-toast';
+import {
+	setTokenFromLocalStorage,
+	setUserIdFromLocalStorage,
+} from '@/utils/localstorage';
 
 export default function LogInForm() {
 	const { toast } = useToast();
@@ -34,8 +38,8 @@ export default function LogInForm() {
 			if (!result.token) {
 				setError('root', { message: result.message });
 			} else {
-				localStorage.setItem('Token', `Bearer ${result.token}`);
-				localStorage.setItem('UserId', result.userId);
+				setUserIdFromLocalStorage('Token', `Bearer ${result.token}`);
+				setTokenFromLocalStorage('UserId', result.userId);
 				navigate('/');
 			}
 		} catch (err) {
