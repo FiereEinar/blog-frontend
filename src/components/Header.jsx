@@ -3,7 +3,10 @@ import { Button } from './ui/button';
 import { Logo } from './ui/logo';
 import ProfileSheet from './ProfileSheet';
 import useAuth from '@/hooks/useAuth';
-import { removeTokenFromLocalStorage } from '@/utils/localstorage';
+import {
+	removeTokenFromLocalStorage,
+	removeUserIdFromLocalStorage,
+} from '@/utils/localstorage';
 
 export default function Header() {
 	const isLoggedIn = useAuth();
@@ -11,6 +14,7 @@ export default function Header() {
 
 	const onLogout = () => {
 		removeTokenFromLocalStorage();
+		removeUserIdFromLocalStorage();
 		navigate('/login');
 	};
 
