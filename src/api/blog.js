@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'https://heady-star-waste.glitch.me';
+const BASE_URL = import.meta.env.VITE_BLOG_API_URL;
 
 export const fetchBlogs = async () => {
   const { data } = await axios.get(`${BASE_URL}/blog`)

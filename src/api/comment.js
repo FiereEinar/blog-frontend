@@ -1,6 +1,6 @@
 import { getTokenFromLocalStorage } from "@/utils/localstorage";
 
-const BASE_URL = 'https://heady-star-waste.glitch.me';
+const BASE_URL = import.meta.env.VITE_BLOG_API_URL;
 const TOKEN = getTokenFromLocalStorage();
 
 export const postComment = async (data, blogId) => {
