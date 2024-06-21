@@ -1,7 +1,6 @@
 import { getTokenFromLocalStorage } from "@/utils/localstorage";
 
 const BASE_URL = import.meta.env.VITE_BLOG_API_URL;
-const TOKEN = getTokenFromLocalStorage();
 
 export const postComment = async (data, blogId) => {
   try {
@@ -12,7 +11,7 @@ export const postComment = async (data, blogId) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: TOKEN,
+          Authorization: getTokenFromLocalStorage(),
         },
         body: JSON.stringify(data),
       }
@@ -36,7 +35,7 @@ export const postEditComment = async (data, commentId, blogId) => {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: TOKEN,
+          Authorization: getTokenFromLocalStorage(),
         },
         body: JSON.stringify(data),
       }
@@ -60,7 +59,7 @@ export const deleteComment = async (commentId, blogId) => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: TOKEN,
+          Authorization: getTokenFromLocalStorage(),
         },
       }
     );
