@@ -23,8 +23,7 @@ export default function TopicPage() {
 		queryFn: fetchTopics,
 	});
 
-	if (topicTitle)
-		topicTitle = topics.find((topic) => topic._id === topicId).title;
+	if (topics) topicTitle = topics.find((topic) => topic._id === topicId).title;
 
 	const {
 		data: blogs,

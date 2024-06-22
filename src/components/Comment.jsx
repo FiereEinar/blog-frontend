@@ -8,6 +8,7 @@ import { deleteComment, postEditComment } from '@/api/comment';
 import { useParams } from 'react-router-dom';
 import { useToast } from './ui/use-toast';
 import { getUserIdFromLocalStorage } from '@/utils/localstorage';
+import DialogWrapper from './DialogWrapper';
 
 /**
  * CommentEditForm will handle the form for editing a comment
@@ -163,9 +164,8 @@ function CommentInfo({
 	const { blogId } = useParams();
 	const [isLoading, setIsLoading] = useState(false);
 
-	const onDelete = async (e) => {
+	const onDelete = async () => {
 		try {
-			e.preventDefault();
 			if (editMode) return;
 			setIsLoading(true);
 
@@ -204,16 +204,22 @@ function CommentInfo({
 							setEditMode={setEditMode}
 						/>
 
-						<Button
-							disabled={isLoading}
-							type='button'
-							onClick={onDelete}
-							size='sm'
-							variant='ghost'
-							className='transition-all size-8 rounded-full p-[6px] hover:bg-gray-200 '
-						>
-							<img src='/delete.svg' alt='delete' />
-						</Button>
+						<DialogWrapper
+							onConfirm={onDelete}
+							title='Confirm delete'
+							description='Are you sure you want to delete this comment? This action can nt be undone.'
+							confirmBtnVariant='destructive'
+							trigger={
+								<Button
+									disabled={isLoading}
+									size='sm'
+									variant='ghost'
+									className='transition-all size-8 rounded-full p-[6px] hover:bg-gray-200 '
+								>
+									<img src='/delete.svg' alt='delete' />
+								</Button>
+							}
+						/>
 					</CommentControlWrapper>
 				)}
 			</div>
